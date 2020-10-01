@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link href="{% static 'css/pages.css' %}" rel="stylesheet">
+
+<!-- ======= Hero Section ======= -->
+<section id="PageHero" class="cyclone">
+  <div class="hero-container">
+    <h1>Disaster Management Cycle</h1>
+  </div>
+</section><!-- End Hero -->
+
+<main id="main">
+
+  <!-- ======= Section ======= -->
+  <section id="pages" class="pages">
+    <div class="container">
+      <h4>Disaster Management Cycle</h4>
+      <p>A holistic and integrated approach will be evolved towards disaster management with emphasis on building strategic partnerships at various levels. The themes underpinning the policy are:</p>
+      <div class="row">
+        <div class="col-6">
+          <ul class="mt-5">
+            <li>Community based DM, including last mile integration of the policy, plans and execution.</li>
+            <li>Capacity development in all spheres</li>
+            <li>Consolidation of past initiatives and best practices.</li>
+            <li>Cooperation with agencies at national and international levels.</li>
+            <li>Multi-sectoral synergy.</li>
+          </ul>
+        </div>
+        <div class="col-6">
+          <img class="img-fluid" src="{% static 'img/pages/DM_Cycle.png' %}">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+{% endblock %}

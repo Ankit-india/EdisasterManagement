@@ -1,0 +1,67 @@
+#PageHero {
+  width: 100%;
+  height: 60vh;
+  background-size: cover;
+  position: relative;
+  letter-spacing: 10px;
+}
+
+#PageHero:before {
+  content: "";
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#PageHero .hero-container {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 0 15px;
+}
+
+#PageHero h1 {
+  margin: 0 0 10px 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.pages h4 {
+  font-weight: 600;
+  color: var(--themeColor);
+}
+
+.pages ul {
+  list-style: none;
+  padding: 0;
+}
+
+.pages ul li {
+  padding: 2px 0px 2px 28px;
+  position: relative;
+}
+.pages ul li::before {
+  font-family: remixicon !important;
+  position: absolute;
+  content: "\eb73";
+  left: 0px;
+  color: var(--themeColor);
+  font-size: 18px;
+}
+
+.cyclone {
+  background: url('../img/pages/cyclone-bg.jpg') center center;
+}

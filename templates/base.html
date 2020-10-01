@@ -1,0 +1,226 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronic Disaster Management</title>
+    <link href="{% static 'img/logo.png' %}" rel="shortcut icon" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/venobox/venobox.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/owl.carousel/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top ">
+        <div class="container d-flex align-items-center">
+
+            <a href="/" class="logo mr-auto"><img src="{% static 'img/logo.png' %}" alt="logo" class="img-fluid"></a>
+
+            <nav class="nav-menu d-none d-lg-block">
+                <ul>
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/#about">About</a></li>
+                    <li class="drop-down"><a href="javascript:void(0)">Disaster Information</a>
+                        <ul>
+                            <li><a href="VulnerabilityProfile">Vulnerability Profile</a></li>
+                            <li><a href="DM_Cycle">Disaster Management Cycle</a></li>
+                            <li class="drop-down"><a href="javascript:void(0)">Disaster Information</a>
+                                <ul>
+                                    <li class="drop-down"><a href="javascript:void(0)">Natural Disaster</a>
+                                        <ul>
+                                            <li><a href="Earthquake">Earthquake</a></li>
+                                            <li><a href="Tsunami">Tsunami</a></li>
+                                            <li><a href="Flood">Flood</a></li>
+                                            <li><a href="UrbanFloods">Urban Floods</a></li>
+                                            <li><a href="Landslides">Landslides</a></li>
+                                            <li><a href="Cyclone">Cyclone</a></li>
+                                            <li><a href="HeatWave">Heat wave</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="drop-down"><a href="javascript:void(0)">Man Made Disaster</a>
+                                        <ul>
+                                            <li><a href="Nuclear">Nuclear</a></li>
+                                            <li><a href="Biological">Biological</a></li>
+                                            <li><a href="Chemical">Chemical</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="/#Category">Category</a></li>
+                    <li><a href="/#Gallery">Gallery</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                    {% if user.is_authenticated %}
+                    <li class="drop-down"><a href="javascript:void(0)">Hii, {{user.first_name}}</a>
+                        <ul>
+                            <li><a href="LogOut">Log Out</a></li>
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li><a href="javascript:void(0)" class="login_btn" data-toggle="modal" data-target="#LogIn">Log In</a></li>
+                    {% endif %}
+                </ul>
+            </nav><!-- .nav-menu -->
+
+        </div>
+    </header><!-- End Header -->
+
+    {% block content %}
+    {% endblock %}
+
+    <div class="modal fade" id="LogIn" tabindex="-1" role="dialog" aria-labelledby="LogInLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content border-0">
+                <form method="POST" action="Login" class="modal-body signUpBody">
+                    {% csrf_token %}
+                    <div class="row py-4">
+                        <div class="col-md-9 mx-auto form-group">
+                            <label>Email or User ID</label>
+                            <input type="emailID" class="form-control" name="email" placeholder="Email or User" required>
+                        </div>
+                        <div class="col-md-9 mx-auto form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password" placeholder="Password" required>
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <input class="btn btn-success px-5 mt-3" value="Log In" type="submit" />
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        Don't have an account? <a href="javascript:void(0);" class="px-2" id="SignUpBtn"><b>Sign up</b></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="SignUp" tabindex="-1" role="dialog" aria-labelledby="SignUpLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content border-0">
+                <form method="POST" action="SignUp" class="modal-body signUpBody mx-5 px-5 py-4">
+                    {% csrf_token %}
+                    <h3>Sign Up</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6 mx-auto form-group">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" name="firstName" placeholder="First Name" required>
+                        </div>
+                        <div class="col-md-6 mx-auto form-group">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" name="lastName" placeholder="Last Name" required>
+                        </div>
+                        <div class="col-md-6 mx-auto form-group">
+                            <label>Email or User ID</label>
+                            <input type="email" class="form-control" name="email" placeholder="Email or User" required>
+                        </div>
+                        <div class="col-md-6 mx-auto form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password" placeholder="Password" required>
+                        </div>
+                    </div>
+                    <div class="row py-4">
+                        <div class="col-md-12 text-center">
+                            <input class="btn btn-success px-5 mt-3" value="Sign Up" type="submit" />
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        Already have an account? <a href="javascript:void(0);" class="px-2" id="LogInBtn"><b>Log In</b></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <a href="/" class="logo mr-auto"><img src="{% static 'img/logo.png' %}" alt="logo" class="img-fluid mb-4"></a>
+                        <p>
+                            A - 007,<br>
+                            Mayur Vihar Phase - III,<br>
+                            New Delhi - 110096<br><br>
+                            <strong>Phone:</strong> +91 79828 38423<br>
+                            <strong>Email:</strong> papnaivivek@gmail.com<br>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 footer-links">
+                        <h4>Useful Links</h4>
+                        <ul class="foot-menu">
+                            <li><i class="bx bx-chevron-right"></i> <a href="javascript:void(0)">Home</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/#about">About us</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/#services">Services</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/#Gallery">Gallery</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/#contact">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Major Disasters</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="Earthquake">Earthquake</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="Flood">Flood</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="Tsunami">Tsunami</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="Landslides">Landslides</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="Cyclone">Cyclone</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 footer-newsletter">
+                        <h4>Join Our Instant Alert System</h4>
+                        <p>We'll send you an email and message whenever any kind of disaster occurs</p>
+                        <form method="GET">
+                            <input type="email" name="email"><input type="submit" value="Subscribe">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container d-md-flex py-3 align-items-center">
+
+            <div class="mr-md-auto text-center text-md-left">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>Electronic Disaster Management</span></strong>. All Rights
+                    Reserved
+                </div>
+            </div>
+            <div class="social-links text-center text-md-right pt-3 pt-md-0">
+                <a href="javascript:void(0)" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="javascript:void(0)" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="javascript:void(0)" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="javascript:void(0)" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="javascript:void(0)" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <a href="javascript:void(0)" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
+
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'vendor/venobox/venobox.min.js' %}"></script>
+    <script src="{% static 'vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>
